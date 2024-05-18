@@ -1,0 +1,47 @@
+/*
+IT21833366
+wijerathna G.D.K
+AF-assignment-01
+React-Frontend-Application-Using-NASA-APIs
+ */
+import mongoose from "mongoose";
+
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    profilePicture: {
+        type: String,
+        default:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+      },
+      isAdmin: {
+        type: Boolean,
+        default: false,
+      },
+      role: { 
+        type: String, 
+        default: false 
+      },
+      enrolledCourses: [{ 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'courses' 
+      }]
+},{timestamps:true}
+);
+
+const User = mongoose.model('User', userSchema);
+
+export default User;
